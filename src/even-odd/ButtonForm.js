@@ -7,15 +7,15 @@ export default function ButtonForm({
 }) {
   return (
     <div>
-      <div class='custom-control custom-checkbox'>
+      <div className='custom-control custom-checkbox'>
         <input
           type='checkbox'
-          class='custom-control-input'
+          className='custom-control-input'
           id='customCheck1'
           checked={checked}
           onChange={handleCheckboxClick}
         />
-        <label class='custom-control-label' for='customCheck1'>
+        <label className='custom-control-label' htmlFor='customCheck1'>
           Even Numbers Only
         </label>
       </div>
