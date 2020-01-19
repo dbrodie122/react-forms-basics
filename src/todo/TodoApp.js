@@ -1,14 +1,35 @@
 import React, { useState } from 'react';
-import Button from './Button';
+import InputControls from './InputControls';
+import TodoList from './TodoList';
 
 export default function TodoApp() {
+  const [todos, setTodos] = useState([]);
   const hideCompleted = () => {
     console.log('clicked');
   };
+  const addTodo = text => {
+    const newTodo = {
+      todo: text,
+      completed: false,
+      id: Math.floor(Math.random() * 10000)
+    };
+    const newTodos = [...todos, newTodo];
+    setTodos(newTodos);
+  };
+
+  const completeTodo = id => {
+    const updatedTodos = todos.map((todo, i) => {
+      if (todo.id === id) {
+        todo.completed = !todo.completed;
+      }
+    });
+    setTodos(updatedTodos);
+  };
   return (
-    <div>
+    <div className='container'>
       <h1>Todo</h1>
-      <Button text='Hide Complete' color='info' clickHandler={hideCompleted} />
+      <InputControls hideCompleted={hideCompleted} addTodo={addTodo} />
+      <TodoList todos={todos} />
     </div>
   );
 }
