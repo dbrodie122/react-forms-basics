@@ -4,9 +4,7 @@ import TodoList from './TodoList';
 
 export default function TodoApp() {
   const [todos, setTodos] = useState([]);
-  const hideCompleted = () => {
-    console.log('clicked');
-  };
+  const [showCompleted, setShowCompleted] = useState(true);
   const addTodo = text => {
     const newTodo = {
       todo: text,
@@ -22,14 +20,23 @@ export default function TodoApp() {
       if (todo.id === id) {
         todo.completed = !todo.completed;
       }
+      return todo;
     });
     setTodos(updatedTodos);
   };
   return (
     <div className='container'>
       <h1>Todo</h1>
-      <InputControls hideCompleted={hideCompleted} addTodo={addTodo} />
-      <TodoList todos={todos} />
+      <InputControls
+        addTodo={addTodo}
+        setShowCompleted={setShowCompleted}
+        showCompleted={showCompleted}
+      />
+      <TodoList
+        todos={todos}
+        completeTodo={completeTodo}
+        showCompleted={showCompleted}
+      />
     </div>
   );
 }
